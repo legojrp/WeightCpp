@@ -1,9 +1,8 @@
 //A weight processor for randomness and chances... MIT License
-#include <string>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-int rand(int min, int max);
+int rand(int min, int max); 
 class Weights {
 public:
 	Weights(float weight = 0){
@@ -25,11 +24,12 @@ float Weights::readWeight(){
 void Weights::resetWeight(float weight){
   //sets the weight
   if (weight <= 1 && weight >= 0){
-  this->weight = weight;
-    }
+  	this->weight = weight;
+  }
   else {
     this->weight = 0;
-    std::cerr << weight << " is too far above or below weight range of 0 to 1." << std::endl;  }
+    std::cerr << weight << " is too far above or below weight range of 0 to 1." << std::endl;  
+  }
 }
 bool Weights::weightTest(){
   //true or false based on weight
@@ -44,8 +44,6 @@ bool Weights::weightTest(){
     this->lastProcess = false;
     return false;
   }
-
-  
 }
 int Weights::rand(int min, int max){
   if (max < min){
