@@ -13,6 +13,7 @@ public:
 	static int rand(int min, int max);
 	float readWeight();
 	void randWeight(int min, int max);
+	bool lastProcessRead();
 private:
 float weight;
 bool lastProcess;
@@ -54,9 +55,8 @@ int Weights::rand(int min, int max){
   //random number in min , and max
   std::srand(time(NULL));
   max = max + 1;
-  int diff = 0-min;
-  int diff2 = max + diff;
-  return std::rand() % diff2 + min;
+  int diff = 0-min + max;
+  return std::rand() % diff + min;
 }
 void Weights::randWeight(int min, int max){
   //random number to weigh
@@ -64,7 +64,12 @@ void Weights::randWeight(int min, int max){
   max *= 1000;
   if (min >= 1000 || max <= 0 || max < min){
   	std::cerr << "An error occur in the parameters." << std::endl;
+    min = 0;
+    max = 1000;
   }
   
   this->weight = Weights::rand(min, max) / 1000;
+}
+bool Weights::lastProcessRead(){
+  return this->lastProcess;
 }
